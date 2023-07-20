@@ -4,38 +4,39 @@
 
 
 
+let h = document.createElement("h1");
 
-var t = document.createElement("title");
+h.setAttribute("id","title");
 
-t.setAttribute("id","title");
+h.setAttribute("style","text-align:center;color:white;font-family:Times New Roman;margin-top:30px;");
 
+h.innerText="Creating Forms by Using Only DOM ";
 
-
-let h1 = document.createElement("h1");
-
-h1.append(t);
-
-t.innerText="Forms Using Only DOM";
+document.body.append(h);
 
 
-
-document.head.append(h1);
 
 
 let des = document.createElement("p");
 
 des.setAttribute("id","description");
 
-des.innerText="Forms Using DOM Only";
+des.setAttribute("style","text-align:center;color:white;font-family:Times New Roman;font-size:20px;");
+
+des.innerText="With Responsive Table Which assigns width automatically itself";
 
 document.body.append(des);
 
+let newline = document.createElement("br");
+
+let td = document.createElement("td");
 
 
+let l = [];
+let v=[];
+let c=[];
 
-
-
-
+let xyt = [];
 
 
 
@@ -58,10 +59,37 @@ document.body.append(des);
 
 let a1 = document.createElement("div");
 
+a1.setAttribute("class","row");
 
-let r1 = document.createElement("div");
 
 
+
+let table = document.createElement("table");
+
+
+
+
+
+
+let thead = document.createElement("thead");
+
+
+
+let tr = document.createElement("tr");
+
+
+
+
+
+
+
+let th = document.createElement("th");
+
+
+th.setAttribute("class","th-sm");
+
+
+let tbody = document.createElement("tbody");
 
 
 
@@ -69,11 +97,13 @@ let r1 = document.createElement("div");
 
 let c1 = document.createElement("div");
 
-let c2 = document.createElement("div");
+
 
 let f1 = document.createElement("form");
 
 f1.setAttribute("id","form");
+
+f1.setAttribute("style","margin:30px 20px 50px 40px;font-family:Times New Roman");
 
 
 
@@ -96,7 +126,7 @@ let f13 = document.createElement("div");
 
 let l3 = document.createElement("label");
 
-let i3 = document.createElement("input");
+let i3 = document.createElement("textarea");
 
 
 let f14 = document.createElement("div");
@@ -191,26 +221,36 @@ let form3 = document.createElement("form");
 
 
 let a2 = document.createElement("div");
-let input = document.createElement("input");
+let input = document.createElement("button");
 
-a1.setAttribute("class","container-fluid");
-a2.setAttribute("class","container-fluid");
+
+a2.setAttribute("class","col");
+
 input.setAttribute("type","button");
-input.setAttribute("class","btn btn-outline-success");
-input.setAttribute("value","Submit");
+input.setAttribute("style","font-style:Times New Roman;font-size:30px");
+input.setAttribute("class","btn btn-primary");
+
+input.setAttribute("id","submit");
+
+
+
+
 input.addEventListener("click",submit);
 
 
 
-
-
+let y = document.createElement('tr');
+let yt = 0;
 
 function submit(){
 
 
-    let row = document.createElement("div");
+    yt++;
     let column = [];
-    row.setAttribute("class","row");
+    for(let i=0;i<=yt;i++)
+       {
+        xyt[i]=document.createElement("tr");
+       }
 
     let z = [];
     let g = 0 ;
@@ -234,15 +274,13 @@ if(document.getElementById("first-name").value && document.getElementById("last-
     
 
         z[6] = document.querySelector('input[name="gridRadios"]:checked').value;
-}else{
-    alert("Please Enter All The Details");
-}
-      
-  
-  
-    
-let z1 = [];
+
+
+
+        let z1 = [];
 let z2 = [];
+
+let z3 = [];
 
 
 
@@ -261,39 +299,60 @@ let z2 = [];
         if(z1[i].checked !== false)
         { 
             g++;
-            z.push(z1[i].value);
+            z3.push(z1[i].value);
             z2.push(z1[i].id);
         }
 
-        if(i == 4 && g < 2)
-        {
-
-            alert('Please Select Atleast Two Foods');
-
-        }
+        
 
     }
 
 
+    if(g < 2)
+    {
+
+        alert('Please Select Atleast Two Foods');
+
+    }
+    else{
+
+    
 
 
-
-if( g >= 2 && z.length >= 6)
-{
+    if( g >= 2 && z.length == 7)
+    {
 
 
     for(let i=0;i<z.length;i++)
     {
  
-    column[i] = document.createElement("div");
-    column[i].setAttribute("class","col");
+    column[i] = document.createElement("td");
+  
+  column[i].setAttribute("style","font-family:Times New Roman;font-size:20px;color:white");
     column[i].append(z[i]);
-    row.append(column[i]);
+ xyt[yt].append(column[i]);
     }
-        
+
+
+ 
+    column[6] = document.createElement("td");
+ 
+    column[6].setAttribute("style","font-family:Times New Roman;font-size:20px;color:white");
+
+    for(let i=0;i<z3.length;i++)
+
+    {
+   
+    column[6].append(z3[i]+"      ");
+  xyt[yt].append(column[6]);
+    }
+
+       
     
-c2.append(row);
-}
+  tbody.append(xyt[yt]);
+    }
+
+
    document.getElementById("first-name").value = "";
      
              document.getElementById("last-name").value = "";
@@ -320,19 +379,60 @@ c2.append(row);
             }
     
 
+
+
+        }
+
+    }
+
+    else
+    {
+    alert("Please Enter All The Details");
+    }
+      
+  
+  
+    
+
+
 }
 
 
 
 
 
+let wrap = document.createElement("div");
+
+wrap.setAttribute("class","table-responsive");
 
 
-r1.setAttribute("class","row");
 
-c1.setAttribute("class","col-4");
+c1.setAttribute("class","col");
 
-c2.setAttribute("class","col");
+
+
+
+table.setAttribute("class","table table-striped w-auto"); 
+
+
+table.setAttribute("display","block");
+
+table.setAttribute("style","font-family:Times New Roman;margin-top:50px;font-size:25px;margin-left:15px;");
+
+thead.setAttribute("position","sticky");
+
+thead.setAttribute("top",0);
+
+table.setAttribute("overflow","scroll");
+
+table.setAttribute("height","300px");
+
+table.setAttribute("width","200px");
+
+
+
+
+
 
 
 f11.setAttribute("class","form-group");
@@ -345,13 +445,19 @@ l1.setAttribute("for","formGroupExampleInput");
 
 i1.setAttribute("type","text");
 
-i1.setAttribute("class","form-control");
+i1.setAttribute('class','form-control');
 
-i1.setAttribute("id","first-name");
+i1.setAttribute('id','first-name');
+
+i1.setAttribute('required','');
 
 i1.setAttribute("placeholder","First Name");
 
-var firstName = document.getElementById("first-name");
+
+
+
+
+
 
 
 
@@ -366,6 +472,8 @@ i2.setAttribute("type","text");
 i2.setAttribute("class","form-control");
 
 i2.setAttribute("id","last-name");
+
+i2.setAttribute("required","");
 
 i2.setAttribute("placeholder","Last Name");
 
@@ -387,6 +495,10 @@ i3.setAttribute("class","form-control");
 
 i3.setAttribute("id","address");
 
+i3.setAttribute("name","address");
+
+i3.setAttribute("required","");
+
 i3.setAttribute("placeholder","address");
 
 
@@ -398,6 +510,8 @@ i4.setAttribute("type","text");
 i4.setAttribute("class","form-control");
 
 i4.setAttribute("id","pincode");
+
+i4.setAttribute("required","");
 
 i4.setAttribute("placeholder","pincode");
 
@@ -415,6 +529,8 @@ i5.setAttribute("class","form-control");
 
 i5.setAttribute("id","state");
 
+i5.setAttribute("required","");
+
 i5.setAttribute("placeholder","state");
 
 
@@ -426,6 +542,8 @@ i6.setAttribute("type","text");
 i6.setAttribute("class","form-control");
 
 i6.setAttribute("id","country");
+
+i6.setAttribute("required","");
 
 i6.setAttribute("placeholder","country");
 
@@ -472,7 +590,7 @@ i8.setAttribute("value","Female");
 
 f19.setAttribute("class","form-group");
 
-l1.setAttribute("for","formGroupExampleInput");
+l9.setAttribute("for","formGroupExampleInput");
 
 
 f20.setAttribute("class","form-group");
@@ -499,7 +617,7 @@ i12.setAttribute("class","custom-control-input");
 
 i12.setAttribute("id","customControlValidation2");
 
-i12.setAttribute("value","Biriyani");
+i12.setAttribute("value","Chicken Rice");
 
 
 
@@ -543,7 +661,7 @@ l15.setAttribute("for","customControlValidation5");
 
 l15.setAttribute("class","custom-control-label");
 
-i15.setAttribute("value","Noodles");
+i15.setAttribute("value","Lemon Rice");
 
 
 
@@ -570,7 +688,7 @@ i16.setAttribute("class","custom-control-input");
 
 i16.setAttribute("id","customControlValidation6");
 
-i16.setAttribute("value","Idly");
+i16.setAttribute("value","Noodles");
 
 
 
@@ -600,16 +718,17 @@ l9.innerText="Gender";
 l11.innerText="Food";
 
 
-l12.innerText="Biriyani";
+l12.innerText="Chicken Rice";
 
 l13.innerText="Curd Rice";
 
 l14.innerText="Fried Rice";
 
-l15.innerText="Noodles";
+l15.innerText="Lemon Rice";
 
-l16.innerText="Idly";
+l16.innerText="Noodles";
 
+input.innerText="Submit";
 
 
 
@@ -663,14 +782,140 @@ f26.append(i16,l16);
 
 form3.append(f22,f23,f24,f25,f26);
 
-c2.append(a2);
 
-a1.append(r1);
 
-r1.append(c1);
+let tr1 = document.createElement("tr");
 
-r1.append(c2);
+
+
+let th1 = [];
+
+
+
+
+
+
+
+
+  for(let i=0;i<8;i++)
+
+  {
+    th1[i]=document.createElement("th");
+  }
+
+
+  th1[0].innerText="First Name";
+  th1[0].setAttribute("position","sticky");
+  th1[0].setAttribute("top",0);
+  th1[0].setAttribute("style","color:white");
+
+  th1[1].innerText="Last Name";
+  th1[1].setAttribute("position","sticky");
+  th1[1].setAttribute("top",0);
+  th1[1].setAttribute("style","color:white");
+
+  th1[2].innerText="Address";
+  th1[2].setAttribute("position","sticky");
+  th1[2].setAttribute("top",0);
+  th1[2].setAttribute("style","color:white");
+
+  th1[3].innerText="Pincode";
+  th1[3].setAttribute("position","sticky");
+  th1[3].setAttribute("top",0);
+  th1[3].setAttribute("style","color:white");
+
+  th1[4].innerText="State";
+  th1[4].setAttribute("position","sticky");
+  th1[4].setAttribute("top",0);
+  th1[4].setAttribute("style","color:white");
+
+  th1[5].innerText="Country";
+  th1[5].setAttribute("position","sticky");
+  th1[5].setAttribute("top",0);
+  th1[5].setAttribute("style","color:white");
+
+  th1[6].innerText="Gender";
+  th1[6].setAttribute("position","sticky");
+  th1[6].setAttribute("top",0);
+  th1[6].setAttribute("style","color:white");
+
+  th1[7].innerText="Food";
+  th1[7].setAttribute("position","sticky");
+  th1[7].setAttribute("top",0);
+  th1[7].setAttribute("style","color:white");
+
+
+  for(let i=0;i<8;i++)
+
+  {
+    tr1.append(th1[i]);
+  }
+
+
+
+
+thead.append(tr1);
+
+
+
+table.append(thead,tbody);
+
+wrap.append(table);
+a2.append(wrap);
+
+a1.append(c1,a2);
+
+document.body.style.backgroundImage = "url('img1.jpg')";
+
+document.body.style.backgroundSize = "2200px 2200px";
+
+
 
 document.body.append(a1);
+
+
+
+
+
+
+v = document.getElementsByTagName("label");
+
+c = document.querySelectorAll(".custom-control-label");
+
+let r = [];
+
+let u = [];
+
+u = document.querySelectorAll(".form-control");
+
+r = document.querySelectorAll(".form-check-label");
+
+for(let i=0;i<v.length;i++)
+{
+    v[i].setAttribute("style","font-size:30px;color:white");
+
+}
+
+for(let i=0;i<c.length;i++)
+{
+    c[i].setAttribute("style","font-size:25px;color:white");
+    
+}
+
+for(let i=0;i<r.length;i++)
+{
+    r[i].setAttribute("style","font-size:25px;color:white");
+    
+}
+
+for(let i=0;i<u.length;i++)
+{
+    u[i].setAttribute("style","font-size:25px;color:black");
+    
+}
+
+
+
+
 
 
